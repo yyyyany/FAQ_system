@@ -9,21 +9,20 @@ from config import Config
 # todo 1.计算日志文件的最终保存路径.
 # 1. 获取当前脚本文件的绝对路径.
 module_path = os.path.abspath(__file__)
-# print(f'module_path: {module_path}')        # D:\workspace\ai_30_bj\integrated_qa_system\base\logger.py
+# print(f'module_path: {module_path}')
 
 # 2. 获取当前脚本所在目录的路径.
 base_path = os.path.dirname(module_path)
-# print(f'base_path: {base_path}')              # D:\workspace\ai_30_bj\integrated_qa_system\base
+# print(f'base_path: {base_path}')
 
 # 3. 获取当前脚本所在目录的父目录的路径.
 current_path = os.path.dirname(base_path)
-# print(f'current_path: {current_path}')          # D:\workspace\ai_30_bj\integrated_qa_system
+# print(f'current_path: {current_path}')
 
 # 4. 拼接日志文件的完整路径.   上级目录 + logs文件夹 + app.log文件.
 # log_file = os.path.join(current_path, 'logs/app.log')
 log_file = os.path.join(current_path, Config().LOG_FILE)       # 效果同上.
-# print(f'log_file: {log_file}')                  # D:\workspace\ai_30_bj\integrated_qa_system\logs/app.log
-
+# print(f'log_file: {log_file}')                  
 
 # todo 2. 封装日志配置函数 -> 可重复使用的双输出日志.
 def setup_logger(log_file=log_file):

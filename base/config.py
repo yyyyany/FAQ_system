@@ -137,7 +137,7 @@ config = Config()
 # todo 3. 主程序入口 -> 测试代码.
 if __name__ == '__main__':
     # 1. 手动指定配置文件路径 -> 用于测试, 实际使用可忽略.
-    # config_file = 'D:/workspace/ai_30_bj/integrated_qa_system/config.ini'      # 绝对路径.
+    # config_file = 'G:\01_Me\05_explore\01_LLMstudy\scripts\integrated_qa_system\config.ini'      # 绝对路径.
     config_file = '../config.ini'      # 相对路径.
 
     # 2. 实例化Config类 -> 加载并解析配置文件.

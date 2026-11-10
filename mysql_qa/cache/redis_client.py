@@ -35,15 +35,15 @@ class RedisClient:
         # 2. 建立Redis连接.
         try:
             self.client = redis.StrictRedis(
-                host=Config().REDIS_HOST,           # Redis数据库主机地址
-                port=Config().REDIS_PORT,           # Redis数据库端口号
-                password=Config().REDIS_PASSWORD,   # Redis数据库密码
-                db=Config().REDIS_DB,               # Redis数据库编号
-                decode_responses=True               # 自动将返回的字节数据转换为字符串(避免手动解码)
+                host=Config().REDIS_HOST,  # Redis数据库主机地址
+                port=Config().REDIS_PORT,  # Redis数据库端口号
+                password=Config().REDIS_PASSWORD,  # Redis数据库密码
+                db=Config().REDIS_DB,  # Redis数据库编号
+                decode_responses=True  # 自动将返回的字节数据转换为字符串(避免手动解码)
             )
         except redis.RedisError as e:
             self.logger.error(f'Redis连接异常: {e}')
-            raise   # 声明抛出异常.
+            raise  # 声明抛出异常.
 
         # 3. 记录INFO日志
         self.logger.info('Redis连接成功')
@@ -52,12 +52,11 @@ class RedisClient:
     def set_data(self, key, value):
         try:
             # 1. 存储数据.
-            self.client.set(key, json.dumps(value, ensure_ascii=False)) # ensure_ascii: 保证中文等非ASCII字符正常显式.
+            self.client.set(key, json.dumps(value, ensure_ascii=False))  # ensure_ascii: 保证中文等非ASCII字符正常显式.
             # 2. 记录INFO日志.
             self.logger.info(f'Redis存储数据成功: {key}')
         except redis.RedisError as e:
             self.logger.error(f'Redis存储数据失败: {e}')
-
 
     # todo 1.3 从Redis中获取数据 -> 反序列化为Python对象.
     def get_data(self, key):
@@ -68,8 +67,7 @@ class RedisClient:
             return json.loads(data) if data else None
         except redis.RedisError as e:
             self.logger.error(f'Redis获取数据失败: {e}')
-            return None     # 保持方法的返回值一致性.
-
+            return None  # 保持方法的返回值一致性.
 
     # todo 1.4 根据查询内容从Redis获取缓存的答案 -> 键格式固定为: "answer:{query}"
     def get_answer(self, query):
@@ -96,7 +94,8 @@ if __name__ == '__main__':
     print(redCli.client.keys("*"))
 
     # 3. 测试get_data()方法: 获取Redis中存储的答案.
-    # print(redCli.get_data('user:1'))            # {'name': 'HangGe', 'age': 18}
+    # print(redCli.get_data('answer:黑马程序员'))            # {'name': 'HangGe', 'age': 18}
 
     # 4. 测试get_answer方法: 获取Redis中存储的答案.  -> 这个才是后续我们要用的.
-    # print(redCli.get_answer('熵的解释'))
+    print(redCli.get_answer('熵的解释'))
+

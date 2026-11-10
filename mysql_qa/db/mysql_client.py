@@ -8,15 +8,15 @@ import sys, os              # sys用于管理系统路径, os用于处理文件�
 # todo 1.路径配置.
 # 1. 获取当前文件所在目录的绝对路径, 即: 当前脚本所在的文件夹.
 current_dir = os.path.dirname(os.path.abspath(__file__))
-# print(f'current_dir: {current_dir}')    # D:\workspace\ai_30_bj\integrated_qa_system\mysql_qa\db
+# print(f'current_dir: {current_dir}')
 
 # 2.获取当前目录的上一级目录.
 module_dir = os.path.dirname(current_dir)
-# print(f'module_dir: {module_dir}')      # D:\workspace\ai_30_bj\integrated_qa_system\mysql_qa
+# print(f'module_dir: {module_dir}')
 
 # 3. 获取项目的根目录.
 project_root = os.path.dirname(module_dir)
-# print(f'project_root: {project_root}')  # D:\workspace\ai_30_bj\integrated_qa_system
+# print(f'project_root: {project_root}')
 
 # 4. 将项目根目录加入系统路径, 确保跨目录导入自定义模块(例如: config, logger)...
 sys.path.insert(0, project_root)
